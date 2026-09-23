@@ -212,21 +212,22 @@
 
             <div class="featured-card animate-on-scroll">
                 <div class="featured-img">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Proyecto Destacado FAINCA">
+           
+                    <img src="images/foto1.jpeg" alt="Proyecto Destacado FAINCA">
                     <span class="featured-badge">Destacado</span>
                 </div>
                 <div class="featured-details">
-                    <h3>Complejo de Infraestructura Comercial & Logística</h3>
+                    <h3>Complejo Residencial</h3>
                     <p class="location"><i class="fa-solid fa-location-dot"></i> Valencia, Venezuela</p>
                     
                     <div class="meta-grid">
                         <div>
                             <strong>Tipo:</strong>
-                            <span>Infraestructura / Comercial</span>
+                            <span>Residencial</span>
                         </div>
                         <div>
-                            <strong>Año:</strong>
-                            <span>2026</span>
+                            <strong></strong>
+                            <span></span>
                         </div>
                     </div>
 
@@ -258,36 +259,36 @@
             <!-- Dynamic Gallery Grid -->
             <div class="gallery-grid">
                 <!-- Project 1 -->
-                <div class="project-card animate-on-scroll" data-category="residencial" onclick="openModal('p1')">
+                <div class="project-card animate-on-scroll" data-category="comercial" onclick="openModal('p1')">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Proyecto Residencial">
+                        <img src="images/foto2.jpg" alt="Proyecto Residencial">
                         <div class="project-overlay">
-                            <span>Ver detalles <i class="fa-solid fa-plus"></i></span>
+                           <!-- <span>Ver detalles <i class="fa-solid fa-plus"></i></span> -->
                         </div>
                     </div>
                     <div class="project-info">
-                        <span class="tag">Residencial</span>
-                        <h3>Desarrollo Habitacional Moderno</h3>
-                        <p><i class="fa-solid fa-location-dot"></i> Valencia, Venezuela</p>
+                        <span class="tag">Industrial</span>
+                        <h3>Complejo Industrial</h3>
+                        <p><i class="fa-solid fa-location-dot"></i> Carabobo(Valencia), Venezuela</p>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card animate-on-scroll" data-category="comercial" onclick="openModal('p2')">
+                <div class="project-card animate-on-scroll" data-category="industrial" onclick="openModal('p2')">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80" alt="Infraestructura Comercial">
+                        <img src="images/foto4.jpg" alt="Infraestructura Comercial">
                         <div class="project-overlay">
                             <span>Ver detalles <i class="fa-solid fa-plus"></i></span>
                         </div>
                     </div>
                     <div class="project-info">
-                        <span class="tag">Comercial</span>
-                        <h3>Centro de Distribución Empresarial</h3>
-                        <p><i class="fa-solid fa-location-dot"></i> Carabobo, Venezuela</p>
+                        <span class="tag">Industrial</span>
+                        <h3>Desarrollo Empresarial</h3>
+                        <p><i class="fa-solid fa-location-dot"></i> Carabobo(Valencia), Venezuela</p>
                     </div>
                 </div>
 
-                <!-- Project 3 -->
+                <!-- Project 3 
                 <div class="project-card project-wide animate-on-scroll" data-category="industrial" onclick="openModal('p3')">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80" alt="Proyecto Industrial">
@@ -300,7 +301,7 @@
                         <h3>Planta de Procesamiento Industrial</h3>
                         <p><i class="fa-solid fa-location-dot"></i> Región Central, Venezuela</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -505,12 +506,12 @@
     <div id="project-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <img id="modal-img" src="" alt="Detalle del Proyecto">
+            <img id="modal-img" src="images/foto1.jpeg" alt="Detalle del Proyecto">
             <h3 id="modal-title"></h3>
             <div class="modal-meta">
                 <p><strong>Ubicación:</strong> <span id="modal-location"></span></p>
                 <p><strong>Tipo:</strong> <span id="modal-type"></span></p>
-                <p><strong>Año:</strong> <span id="modal-year"></span></p>
+                <!-- <p><strong>Año:</strong> <span id="modal-year"></span></p> -->
             </div>
             <p id="modal-desc" class="modal-description"></p>
         </div>

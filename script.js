@@ -3,35 +3,25 @@ const projectsData = {
     featured: {
         title: "Complejo de Infraestructura Comercial & Logística",
         location: "Valencia, Venezuela",
-        type: "Infraestructura / Comercial",
-        year: "2026",
-        img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-        desc: "Desarrollo integral de obra civil con estructura metálica de alta resistencia, área de carga pesada e ingeniería de vanguardia para operaciones de volumen."
+        type: "Residencial",
+        img: "images/foto1.jpeg",
+        desc: "",
     },
     p1: {
         title: "Desarrollo Habitacional Moderno",
-        location: "Valencia, Venezuela",
-        type: "Residencial",
-        year: "2025",
-        img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
-        desc: "Construcción residencial multifamiliar orientada a la eficiencia energética, acabados de primera línea y sistemas integrados de seguridad."
+        location: "Carabobo(Valencia), Venezuela",
+        type: "Industrial",
+        img: "images/foto3.jpg",
+        desc: ""
     },
     p2: {
         title: "Centro de Distribución Empresarial",
-        location: "Carabobo, Venezuela",
-        type: "Comercial",
-        year: "2024",
-        img: "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80",
-        desc: "Edificación comercial diseñada para optimizar procesos logísticos e institucionales en la zona industrial."
-    },
-    p3: {
-        title: "Planta de Procesamiento Industrial",
-        location: "Región Central, Venezuela",
+        location: "Carabobo(Valencia), Venezuela",
         type: "Industrial",
-        year: "2023",
-        img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80",
-        desc: "Ingeniería y ejecución de infraestructura pesada industrial con riguroso cumplimiento de estándares normativos."
-    }
+        img: "images/foto4.jpg",
+        desc: ""
+    },
+    
 };
 
 // --- Theme Toggle (Dark / Light Mode) ---
@@ -40,8 +30,11 @@ const htmlElement = document.documentElement;
 
 function applyTheme(theme) {
     htmlElement.setAttribute('data-theme', theme);
+    if (!themeToggleBtn) return;
     const icon = themeToggleBtn.querySelector('i');
-    icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    if (icon) {
+        icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
 }
 
 const savedTheme = localStorage.getItem('fainca-theme');
@@ -49,12 +42,14 @@ if (savedTheme === 'dark' || savedTheme === 'light') {
     applyTheme(savedTheme);
 }
 
-themeToggleBtn.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    applyTheme(newTheme);
-    localStorage.setItem('fainca-theme', newTheme);
-});
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+        localStorage.setItem('fainca-theme', newTheme);
+    });
+}
 
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const navLinks = document.getElementById('nav-links');
@@ -119,31 +114,39 @@ const modal = document.getElementById('project-modal');
 
 function openModal(projectId) {
     const data = projectsData[projectId];
-    if (!data) return;
+    if (!data || !modal) return;
 
-    document.getElementById('modal-img').src = data.img;
-    document.getElementById('modal-title').innerText = data.title;
-    document.getElementById('modal-location').innerText = data.location;
-    document.getElementById('modal-type').innerText = data.type;
-    document.getElementById('modal-year').innerText = data.year;
-    document.getElementById('modal-desc').innerText = data.desc;
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalLocation = document.getElementById('modal-location');
+    const modalType = document.getElementById('modal-type');
+    const modalDesc = document.getElementById('modal-desc');
+
+    if (modalImg) modalImg.src = data.img;
+    if (modalTitle) modalTitle.innerText = data.title;
+    if (modalLocation) modalLocation.innerText = data.location;
+    if (modalType) modalType.innerText = data.type;
+    if (modalDesc) modalDesc.innerText = data.desc;
 
     modal.style.display = 'flex';
     document.body.classList.add('modal-open');
 }
 
 function closeModal() {
+    if (!modal) return;
     modal.style.display = 'none';
     document.body.classList.remove('modal-open');
 }
 
-window.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-});
+if (modal) {
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
-});
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    });
+}
 
 // --- Stats Counter Animation ---
 let statsAnimated = false;
@@ -198,12 +201,20 @@ function updateOnScroll() {
     revealOnScroll();
     animateStats();
 
-    if (window.scrollY > 60) {
-        navbar.classList.add('scrolled');
-        scrollTopBtn.classList.add('visible');
-    } else {
-        navbar.classList.remove('scrolled');
-        scrollTopBtn.classList.remove('visible');
+    if (navbar) {
+        if (window.scrollY > 60) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+
+    if (scrollTopBtn) {
+        if (window.scrollY > 60) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
     }
 
     let currentSection = '';
@@ -224,9 +235,11 @@ function updateOnScroll() {
 
 window.addEventListener('scroll', updateOnScroll);
 
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 // Initial Trigger
 updateOnScroll();
